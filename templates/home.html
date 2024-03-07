@@ -10,15 +10,23 @@
         height: 360px;
         width: 100%;
         object-fit: cover;
+        margin-bottom: 16px;
       }
     </style>
   </head>
   <body> 
+    {% include 'nav.html' %} 
+    <img class="img-fluid" id="banner" src="/static/banner.jpg">
     <div class="container">
       <h1 class="text-center mt-2 mb-2">Yashshree Careers</h1>
-      <img class="img-fluid" id="banner" src="https://f04750e5-1a96-458c-bde2-df8ad17066a8-00-391788aeq6qlf.pike.replit.dev/static/banner.jpg">
-      <h2 class="text-center mt-2 mb-2">About Yashshree</h2>
-      <p class="lead">Ligula ullamcorper malesuada proin libero nunc. A cras semper auctor neque vitae tempus quam pellentesque nec. Posuere morbi leo urna molestie at elementum eu facilisis. Est placerat in egestas erat. Nunc scelerisque viverra mauris in aliquam sem. Lacus viverra vitae congue eu consequat ac. Purus semper eget duis at tellus at urna. Pharetra massa massa ultricies mi quis hendrerit dolor magna. Sit amet est placerat in. Nunc sed id semper risus in hendrerit gravida rutrum quisque non. </p>
+      <div class="row" style="margin-bottom:16px;">
+        <div class="col-md-6">
+          <p class="lead">Ligula ullamcorper malesuada proin libero nunc. A cras semper auctor neque vitae tempus quam pellentesque nec. Posuere morbi leo urna molestie at elementum eu facilisis. Est placerat in egestas erat. Nunc scelerisque viverra mauris in aliquam sem. Lacus viverra vitae congue eu consequat ac. Purus semper eget duis at tellus at urna. Pharetra massa massa ultricies mi quis hendrerit dolor magna. Sit amet est placerat in. Nunc sed id semper risus in hendrerit gravida rutrum quisque non. </p>
+        </div>
+        <div class="d-none d-md-block col-md-6">
+          <img class="img-fluid" style="height:260px; border-radius:4px;" src="/static/people.jpg">
+        </div>
+      </div>
 
       <h2 class="text-center">Opens Positions</h2>
       <p>
@@ -28,8 +36,8 @@
       </p>
       <div class="text-center">
         <button class="btn btn-primary btn-lg">Contact Us</button>
-        <p>Copyright 2023, Yashshree</p>
       </div>
+      {% include 'footer.html' %} 
     </div>
   </body>
 </html>
