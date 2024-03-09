@@ -1,12 +1,14 @@
 <div class="border-bottom row" style="margin-bottom: 16px; padding-bottom:8px;">
   <div class="col-9">
-    <h4 style="color:rgb(109, 109, 109); margin-bottom: 4px;">{{job['title']}}</h4>
+    <h4 style="color:rgb(140, 140, 140); margin-bottom:4px;">{{job['title']}}</h4>
     <div><b>Location:</b> {{job['location']}}</div>
     {% if 'salary' in job %}
       <div><b>Salary:</b> {{job['currency']}} {{job['salary']}}</div>
     {% endif %}
   </div>
-  <div class="col-3">
-    <button type="button" class="btn btn-outline-primary">Apply</button>
+  <div class="col-3" style="display: flex;
+    justify-content: center;
+    align-items: center;">
+      <a href="/job/{{job['id']}}" style="text-decoration: none; " target="_blank" type="button" class="btn btn-outline-primary" >Apply</a>
   </div>
 </div>
