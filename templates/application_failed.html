@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Application Failed</title>
+    {% include 'bootstrap.html' %}
+  </head>
+  <body>
+    {% include 'nav.html' %}
+    {% include 'banner.html' %}
+    <div class="container">
+      <h1 class="text-center mt-2 mb-4">Application failed</h1>
+        <div class="alert alert-warning" role="alert">
+          <p>Hi {{application['name']}},</p>
+          <p>
+            We appreciate your persistence and dedication to joining our Yashshree Family as <strong>{{job['title']}}</strong>. However, we want to inform you that we have already received an application from the email address associated with your current submission.
+          </p>
+          <p>
+            Rest assured, your initial application is being reviewed by our hiring team. If there are any updates or further steps required, we will reach out to you directly.
+          </p>
+        </div>
+      <div class="text-center">
+        <a class="btn btn-outline-primary" href="/">Explore more jobs</a>
+      </div>
+    </div>
+    {% include 'footer.html' %}
+  </body>
+</html>

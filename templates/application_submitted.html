@@ -8,14 +8,19 @@
     {% include 'nav.html' %}
     {% include 'banner.html' %}
     <div class="container">
-      <h1 class="text-center mt-2 mb-4">Application submitted</h1>
+      <h1 class="text-center mt-2 mb-4">Application Submitted</h1>
+      <div class="alert alert-success" role="alert">
+      <p>Hi {{application['name']}},</p>
       <p>
-        Your application for the role of <b>{{job['title']}}</b> at <b>{{job['company']}}</b> has been submitted.
+        Your application for the role of <b>{{job['title']}}</b> at <b>{{job['company']}}</b> has been submitted successfully.
       </p>
       <p>
         We will contact you shortly.
       </p>
-      <a class="btn btn-outline-primary" href="/">Explore more jobs</a>
+      </div>
+      <div class="text-center">
+        <a class="btn btn-outline-primary" href="/">Explore more jobs</a>
+      </div>
     </div>
     {% include 'footer.html' %}
   </body>

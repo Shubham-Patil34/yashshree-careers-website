@@ -1,6 +1,6 @@
 
 <h4 class="text-center mt-2 mb-3">Application form</h4>
-<form action="/job/{{job['id']}}/apply" method="post">
+<form action="/job/{{job['id']}}/apply" method="post" style="max-width:520px;">
   <div class="mb-3">
     <label for="name" class="form-label">Name</label>
     <input type="text" class="form-control" id="name" name="name" placeholder="Shyam Bangar">
@@ -15,15 +15,15 @@
   </div>
   <div class="mb-3">
     <label for="education" class="form-label">Education</label>
-    <textarea class="form-control" id="education" name="education" placeholder="Enter your education details"></textarea>
+    <textarea class="form-control" id="education" name="education" placeholder="Bachelor of Science from Shreerangpur University"></textarea>
   </div>
   <div class="mb-3">
     <label for="workexp" class="form-label">Work Experience</label>
-    <textarea class="form-control" id="workexp" name="workexp" placeholder="Enter your work experience"></textarea>
+    <textarea class="form-control" id="workexp" name="workexp" placeholder="4 Years as a Support Engineer at MHJ.Inc"></textarea>
   </div>
   <div class="mb-3">
     <label for="resume_url" class="form-label">Resume URL</label>
-    <input type="url" class="form-control" id="resume_url" name="resume_url">
+    <input type="url" class="form-control" id="resume_url" name="resume_url" placeholder="https://drive.google.com/file/d/shyambangar.pdf">
   </div>
-  <input class="btn btn-outline-primary" type="submit">
+  <input class="btn btn-outline-primary" type="submit" id="submitBtn">
 </form>
