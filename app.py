@@ -15,18 +15,20 @@ def list_jobs():
   return jsonify(load_jobs_from_db())
 
 @app.route("/job/<id>")
-def show_job(id):
+def show_job(id,):
   job=load_job_from_db(id)
-  return render_template('jobpage.html', job=job)
+  return render_template('jobpage.html', 
+                         job=job)
 
 @app.route("/job/<id>/apply", methods=['post'])
 def apply_to_job(id):
   data = request.form
   job=load_job_from_db(id)
-  
+ 
   if add_application_to_db(id, data):
-    return render_template('application_submitted.html',                          application=data,
-                        job=job)
+    return render_template('application_submitted.html',
+                             application=data,
+                             job=job)
   else:
     return render_template('application_failed.html',    
                            application=data, 

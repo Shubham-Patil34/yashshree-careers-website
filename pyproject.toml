@@ -10,6 +10,7 @@ packages = [{include = "repl_nix_yashshree_careers_website"}]
 python = "^3.10"
 flask = "^3.0.2"
 sqlalchemy = "^2.0.28"
+requests = "^2.31.0"
 
 
 [build-system]
