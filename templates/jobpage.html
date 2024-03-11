@@ -3,6 +3,12 @@
   <head>
     <title>{{job.title}} - Yashshree Careers</title>
     {% include 'bootstrap.html' %}
+     <script src="https://www.google.com/recaptcha/api.js"></script>
+     <script>
+       function onSubmit(token) {
+         document.getElementById("job-application").submit();
+       }
+     </script>
   </head>
   <body> 
     {% include 'nav.html' %} 
