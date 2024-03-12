@@ -69,7 +69,7 @@ let IS_EMAIL_VERIFIED = false;
 function showToast(message, type){
   const toastLiveExample = document.getElementById('liveToast');
   const toastBody = toastLiveExample.querySelector('.toast-body');
-  toastBody.classList.add(type);
+  toastBody.classList.value = "toast-body " + type;
   toastBody.innerHTML = `<strong>` + message + `<strong>`;
   const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
   toastBootstrap.show()
