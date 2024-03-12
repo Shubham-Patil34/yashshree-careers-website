@@ -4,7 +4,7 @@ let IS_EMAIL_VERIFIED = false;
 // Function to submit form after recaptcha is solved
  function onSubmit(token) {
    if(IS_EMAIL_VERIFIED){
-     document.getElementById("job-application").submit();
+     document.getElementById("reallySubmit").click();
    }
    else{
      showToast("Please verify email address first...", "text-warning");
