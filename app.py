@@ -20,7 +20,8 @@ def show_job(id,):
   job=load_job_from_db(id)
   return render_template('jobpage.html',
                          job=job,
-                         site_key=os.environ['SITE_KEY'])
+                         site_key=os.environ['SITE_KEY'],
+                        email_tocken=os.environ['EMAIL_TOCKEN'])
 
 @app.route("/job/<id>/apply", methods=['post'])
 def apply_to_job(id):
