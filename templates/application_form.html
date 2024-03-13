@@ -18,7 +18,7 @@
     <label for="email" class="form-label required">Email address</label>
     <input type="email" class="form-control" id="email" name="email" placeholder="shyam.bangar@mhj.com" oninput="enableSendOTP()"  required>    
   </div>
-  <button class="btn btn-outline-secondary mb-3" id="sendOTPButton" onclick="sendOTP('{{email_tocken}}')" disabled>Send OTP</button>
+  <button class="btn btn-outline-secondary mb-3" id="sendOTPButton" onclick="sendOTP('{{domain_ref}}')" disabled>Send OTP</button>
   <div class="mb-3" id="otpField" style="display: none;">
     <label for="otp">Enter OTP:</label>
     <input type="text" id="otp" name="otp" required>

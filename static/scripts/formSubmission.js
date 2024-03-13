@@ -23,26 +23,53 @@ let IS_EMAIL_VERIFIED = false;
  }
 
 // Function to send OTP to the user email and validating it
- function sendOTP(emailTocken) {
+ function sendOTP(domainRef) {
    const otp_inp = document.getElementById('otp');
    const otp_btn = document.getElementById('verifyButton');
    const email = document.getElementById('email');
 
 
    let otp_val = Math.floor(Math.random() * 900000) + 100000;
-   let emailbody = getOTPTemplate(otp_val);;
+   let emailbody = getOTPTemplate(otp_val, domainRef);
    
     // console.log(email.value);
-   Email.send({
-       SecureToken : emailTocken,
-       To : email.value,
-       From : "yashshareemungush@gmail.com",
-       Subject : "Email Verification - Yashshree Careers",
-       Body : emailbody
-   }).then(
+   // Email.send({
+   //     SecureToken : emailTocken,
+   //     To : email.value,
+   //     From : "yashshareemungush@gmail.com",
+   //     Subject : "Email Verification - Yashshree Careers",
+   //     Body : emailbody
+   // })
+   
+   const url = domainRef + 'sendemail';
+
+   // Data to be sent with the POST request
+   const data = {
+     receiver: email.value,
+     body: emailbody
+   };
+
+   // Configuring the request
+   const options = {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json'
+     },
+     body: JSON.stringify(data)
+   };
+
+   // Sending the request
+   fetch(url, options)
+     .then(response => {
+       if (!response.ok) {
+         throw new Error('Network response was not ok');
+       }
+       return response.json(); // Parse response data as JSON
+     })
+     .then(
      message => {
        // console.log("message", message);
-       if (message === "OK"){
+       if (message.status === "OK"){
            showToast("OTP is send to " + email.value, "text-info");         
          // alert("OTP send to you email " + email.value);
 
@@ -76,7 +103,7 @@ function showToast(message, type){
 }
 
 // Function to get the otp email template
-function getOTPTemplate(emailOTP){
+function getOTPTemplate(emailOTP, domainRef){
   return `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -98,12 +125,12 @@ function getOTPTemplate(emailOTP){
                   <tr>
                     <td style="padding: 40px 0px 0px;">
                       <div style="text-align: left;">
-                        <div style="padding-bottom: 20px;"><img src="https://f04750e5-1a96-458c-bde2-df8ad17066a8-00-391788aeq6qlf.pike.replit.dev/static/logo.png" alt="Company" style="width: 56px;"></div>
+                        <div style="padding-bottom: 20px;"><img src="${domainRef}static/logo.png" alt="Company" style="width: 56px;"></div>
                       </div>
                       <div style="padding: 20px; background-color: rgb(255, 255, 255);">
                         <div style="color: rgb(0, 0, 0); text-align: left;">
                           <h1 style="margin: 1rem 0">Verification code</h1>
-                          <p style="padding-bottom: 16px">Please use the verification code below to sign in.</p>
+                          <p style="padding-bottom: 16px">Please use the verification code below to proceed with application:.</p>
                           <p style="padding-bottom: 16px"><strong style="font-size: 130%">${emailOTP}</strong></p>
                           <p style="padding-bottom: 16px">If you didn’t request this, you can ignore this email.</p>
                           <p style="padding-bottom: 16px">Thanks,<br>The Yashshree team</p>
@@ -123,4 +150,12 @@ function getOTPTemplate(emailOTP){
     </body>
 
     </html>`;
+}
+
+// Function to handle reCaptcha failure
+function onPageLoad(isCaptchaVerified) {
+  // console.log("isCaptchaVerified", isCaptchaVerified);
+    if(isCaptchaVerified == "False"){
+      showToast("The reCaptcha verification failed...!", "text-danger");
+    }
 }
