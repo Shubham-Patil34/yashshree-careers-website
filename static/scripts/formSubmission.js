@@ -23,7 +23,7 @@ let IS_EMAIL_VERIFIED = false;
  }
 
 // Function to send OTP to the user email and validating it
- function sendOTP(emailTocken, domainRef) {
+ function sendOTP(domainRef) {
    const otp_inp = document.getElementById('otp');
    const otp_btn = document.getElementById('verifyButton');
    const email = document.getElementById('email');
@@ -33,16 +33,43 @@ let IS_EMAIL_VERIFIED = false;
    let emailbody = getOTPTemplate(otp_val, domainRef);
    
     // console.log(email.value);
-   Email.send({
-       SecureToken : emailTocken,
-       To : email.value,
-       From : "yashshareemungush@gmail.com",
-       Subject : "Email Verification - Yashshree Careers",
-       Body : emailbody
-   }).then(
+   // Email.send({
+   //     SecureToken : emailTocken,
+   //     To : email.value,
+   //     From : "yashshareemungush@gmail.com",
+   //     Subject : "Email Verification - Yashshree Careers",
+   //     Body : emailbody
+   // })
+   
+   const url = domainRef + 'sendemail';
+
+   // Data to be sent with the POST request
+   const data = {
+     receiver: email.value,
+     body: emailbody
+   };
+
+   // Configuring the request
+   const options = {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json'
+     },
+     body: JSON.stringify(data)
+   };
+
+   // Sending the request
+   fetch(url, options)
+     .then(response => {
+       if (!response.ok) {
+         throw new Error('Network response was not ok');
+       }
+       return response.json(); // Parse response data as JSON
+     })
+     .then(
      message => {
        // console.log("message", message);
-       if (message === "OK"){
+       if (message.status === "OK"){
            showToast("OTP is send to " + email.value, "text-info");         
          // alert("OTP send to you email " + email.value);
 

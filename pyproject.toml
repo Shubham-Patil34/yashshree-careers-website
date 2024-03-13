@@ -11,6 +11,7 @@ python = "^3.10"
 flask = "^3.0.2"
 sqlalchemy = "^2.0.28"
 requests = "^2.31.0"
+flask-mail = "^0.9.1"
 
 
 [build-system]
