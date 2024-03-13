@@ -21,7 +21,9 @@ def show_job(id,):
   return render_template('jobpage.html',
                          job=job,
                          site_key=os.environ['SITE_KEY'],
-                        email_tocken=os.environ['EMAIL_TOCKEN'])
+                        email_tocken=os.environ['EMAIL_TOCKEN'],
+                        domain_ref=os.environ['DOMAIN_REF'],
+                        isCpatchaVerified="True");
 
 @app.route("/job/<id>/apply", methods=['post'])
 def apply_to_job(id):
@@ -29,9 +31,9 @@ def apply_to_job(id):
   url = os.environ['VERIFICATION_URL']
   key = os.environ['SECRET_KEY']
   verify_response = requests.post(url=f'{url}?secret={key}&response={secret_response}').json()
+  job=load_job_from_db(id)
   if verify_response['success'] == True:
     data = request.form
-    job=load_job_from_db(id)
     if add_application_to_db(id, data):
       return render_template('application_submitted.html',
                              application=data,
@@ -41,7 +43,12 @@ def apply_to_job(id):
                            application=data, 
                            job=job)
   else:
-    return "ReCaptcha Failed..!!"
+    return render_template('jobpage.html',
+       job=job,
+       site_key=os.environ['SITE_KEY'],
+      email_tocken=os.environ['EMAIL_TOCKEN'],
+      domain_ref=os.environ['DOMAIN_REF'],
+                           isCaptchaVerified="False");
   
 if __name__ == "__main__":
   app.run(host='0.0.0.0', debug=True)
